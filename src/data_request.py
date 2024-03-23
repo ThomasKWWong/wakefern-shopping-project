@@ -17,15 +17,18 @@ headers = {'Ocp-Apim-Subscription-Key': '{key}'.format(key=api_key),
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}
 
 jsonData = requests.get(url, headers=headers).json()
-#pprint(jsonData)
 
-for item in jsonData:
-    sql = "INSERT INTO Transactions (column1, column2, ...) VALUES (%s, %s, ...)"
-    values = (item['value1'], item['value2'], ...)
-    cursor.execute(sql, values)
+f = open("items.json", "a")
+print(jsonData, file=f)
+f.close()
+
+#for item in jsonData:
+#    sql = "INSERT INTO transactions (id, column2, ...) VALUES (%s, %s, ...)"
+#    values = (item['value1'], item['value2'], ...)
+#    cursor.execute(sql, values)
 
 # Commit changes and close connection
-con.commit()
+#con.commit()
 
 # Close cursor and connection
 cursor.close()
